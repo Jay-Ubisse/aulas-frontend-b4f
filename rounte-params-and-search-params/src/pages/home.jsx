@@ -4,7 +4,9 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <main>Home Page</main>
+      <main>
+        <h1>Home Page</h1>
+      </main>
     </>
   );
 };
