@@ -1,0 +1,11 @@
+section {
+  display: flex;
+}
+
+section div {
+  width: 80%;
+}
+section nav {
+  width: 20%;
+  background-color: #d6d6d6;
+}

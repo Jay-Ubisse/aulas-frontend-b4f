@@ -4,7 +4,7 @@ import AuthContext from "../contexts/auth-context";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { session, updateSession } = useContext(AuthContext);
+  const { updateSession } = useContext(AuthContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,14 +16,14 @@ export const Login = () => {
       email: formData.get("email"),
       password: formData.get("password"),
     };
+
     updateSession(userData);
-    //navigate("/home");
+    navigate("/home");
   }
 
   return (
     <main>
       <h1>Login Page</h1>
-      {session.name}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nome</label>
