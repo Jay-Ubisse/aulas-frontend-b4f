@@ -1,19 +1,14 @@
 import { createContext, useState } from "react";
-import { shoppingCart } from "../data/products";
 const ShoppingCartContext = createContext(null);
 
 export function ShoppingCartContextProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   function addToCart(cartItem) {
-    shoppingCart.push(cartItem);
-    setCart(shoppingCart);
+    setCart((prevCart) => [...prevCart, cartItem]);
   }
 
-  function removeFromCart(index) {
-    shoppingCart.splice(index, 1);
-    setCart(shoppingCart);
-  }
+  function removeFromCart(index) {}
 
   return (
     <ShoppingCartContext.Provider value={{ cart, addToCart }}>

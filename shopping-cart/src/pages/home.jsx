@@ -5,15 +5,15 @@ import "../App.css";
 
 export const Home = () => {
   const { cart, addToCart, removeFromCart } = useContext(ShoppingCartContext);
-  console.log(shoppingCart);
-
-  function handleAddToCart() {
-    addToCart(products[0]);
+  let total = 0;
+  function handleAddToCart(id) {
+    const product = products.find((product) => product.id === id);
+    addToCart(product);
   }
 
   return (
     <main>
-      Items naa carrinha:{" "}
+      Items naacarrinha:{" "}
       <span style={{ fontWeight: "bold" }}>{cart.length}</span>
       <section>
         <div>
@@ -24,17 +24,30 @@ export const Home = () => {
             >
               <h2>{product.name}</h2>
               <p>{product.price}</p>
-              <button onClick={handleAddToCart}>Adicionar a carrinha</button>
+              <button onClick={() => handleAddToCart(product.id)}>
+                Adicionar a carrinha
+              </button>
             </div>
           ))}
         </div>
         <nav>
           <h2>Produtos na carrinha</h2>
-          {cart.map((cartItem) => (
-            <div key={cartItem.id}>
-              <h3>{cartItem.name}</h3>
-            </div>
-          ))}
+          {cart.map((cartItem) => {
+            total += cartItem.price;
+
+            return (
+              <div key={cartItem.id}>
+                <h3>{cartItem.name}</h3>
+                <p>
+                  Preço: <span>{cartItem.price}</span>
+                </p>
+                <button style={{ backgroundColor: "red" }}>Eliminar</button>
+              </div>
+            );
+          })}
+          <div>
+            <h1>Tota: {total.toFixed(2)} MT</h1>
+          </div>
         </nav>
       </section>
     </main>
